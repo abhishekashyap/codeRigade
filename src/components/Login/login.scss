@@ -1,0 +1,19 @@
+body {
+  background-color: #364f6b;
+}
+
+.login-container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+:root {
+  --gridMaxWidth: 20rem;
+  --gridWidth: 90%;
+}
