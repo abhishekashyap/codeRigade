@@ -22,9 +22,53 @@
   }
 
   .controls {
+    display: flex;
+    // align-items: center;
+    justify-content: space-around;
+    align-content: space-around;
     background-color: #2ecc71;
     height: 5%;
     width: 90%;
+    overflow-y: scroll;
+  }
+
+  .control-dropdown {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    background-color: #13866f;
+    padding: 0 1% 0 1%;
+    select {
+      width: 100%;
+      outline-color: #fc5185;
+      appearance: none;
+      background-color: #13866f;
+      color: #fff;
+      font-size: inherit;
+      padding: 0.5em;
+      border: none;
+      transition: 0.2s ease;
+      &:hover {
+        background-color: #145f50;
+      }
+    }
+  }
+
+  .control-icon {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #2980b9;
+    transition: 0.2s ease;
+    &:hover {
+      background-color: #1574b4;
+    }
+  }
+
+  // Overriding the main codemirror css
+  .CodeMirror {
+    height: 600px;
   }
 
   .code-editor {
