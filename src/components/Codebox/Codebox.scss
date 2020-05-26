@@ -1,0 +1,30 @@
+.codebox-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  text-align: center;
+  height: 100%;
+
+  header {
+    margin-top: 3rem;
+    h1 {
+      font-size: 3em;
+      color: #f0f0f0;
+    }
+  }
+
+  main {
+    display: flex;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  textarea {
+    border: none;
+    background-color: #464a4b;
+    outline-color: #fc5185;
+    max-width: 95%;
+    max-height: 85%;
+  }
+}

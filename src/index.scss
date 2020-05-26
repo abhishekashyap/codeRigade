@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -9,4 +11,6 @@ body,
 #root {
   // #root is the React root div
   height: 100%;
+  background-color: #2c3338;
+  font-family: "Montserrat", sans-serif;
 }
