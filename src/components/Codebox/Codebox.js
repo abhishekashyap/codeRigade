@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { FiShare2 } from "react-icons/fi";
 import io from "socket.io-client";
+import queryString from "query-string";
 
 // The following two imports is for the theme.
 import "codemirror/lib/codemirror.css";
@@ -26,14 +27,38 @@ import "codemirror/mode/vue/vue";
 // Overrides some codemirror classes, don't change order
 import "./Codebox.scss";
 
-const socket = io("localhost:5000");
+let socket;
 
-export default function Codebox() {
+export default function Codebox({ location }) {
   const [options, setOptions] = useState({
     mode: { name: "xml" },
     theme: "material",
     lineNumbers: true,
   });
+
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+  const [text, setText] = useState("<h1>Welcome to CodeRigade</h1>");
+  const ENDPOINT = "localhost:5000";
+
+  useEffect(() => {
+    const { name, code } = queryString.parse(location.search);
+
+    socket = io(ENDPOINT);
+
+    setName(name);
+    setCode(code);
+
+    socket.emit("join", { name, code }, (error) => {
+      if (error) {
+        alert(error);
+      }
+    });
+  }, [ENDPOINT, location.search]);
+
+  const handleChange = () => {
+    socket.emit("sendText", text);
+  };
 
   return (
     <div className="codebox-container">
@@ -78,13 +103,13 @@ export default function Codebox() {
           </div>
         </div>
         <CodeMirror
-          value="<h1>Welcome to CodeRigade</h1>"
+          value={text}
           className="code-editor"
           options={options}
+          autoCursor={false}
           onChange={(editor, data, value) => {
-            console.log("Editor: ", editor);
-            console.log("Data: ", data);
-            console.log("Value: ", value);
+            setText(value);
+            handleChange();
           }}
         />
       </main>

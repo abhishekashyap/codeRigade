@@ -8,7 +8,6 @@ export default function Login(props) {
     e.preventDefault();
     const code = new Date().getTime(); // Generating random key
     props.history.push(`/codebox?name=${name}&code=${code}`);
-    console.log(name);
   };
 
   return (

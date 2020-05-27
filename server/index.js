@@ -13,36 +13,43 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  socket.on("join", ({ username, roomcode }, callback) => {
-    const { error, user } = addUser({ id: socket.id, username, roomcode });
+  socket.on("join", ({ name, code }, callback) => {
+    console.log("User has joined");
+    const { error, user } = addUser({ id: socket.id, name, code });
 
     if (error) {
       return callback(error);
     } else {
-      socket.broadcast.to(user.roomcode).emit("message", {
+      socket.broadcast.to(user.code).emit("text", {
         user: "admin",
-        text: `${user.username} has joined!`,
+        text: `${user.name} has joined!`,
       });
 
-      socket.join(user.roomcode);
+      socket.join(user.code);
 
-      io.to(user.roomcode).emit("roomData", {
-        room: user.roomcode,
-        users: usersInRoom(user.roomcode),
+      io.to(user.code).emit("roomData", {
+        room: user.code,
+        users: usersInRoom(user.code),
       });
 
       callback();
     }
   });
 
+  socket.on("sendText", (text) => {
+    const user = findUser(socket.id);
+    console.log(text);
+    io.to(user.room).emit("text", { user: user.name, text: text });
+  });
+
   socket.on("disconnect", () => {
-    // console.log('User has disconnected')
+    console.log("User has disconnected");
     const user = removeUser(socket.id);
 
     if (user) {
-      io.to(user.roomcode).emit("message", {
+      io.to(user.code).emit("text", {
         user: "admin",
-        text: `${user.username} has left`,
+        text: `${user.name} has left`,
       });
     }
   });

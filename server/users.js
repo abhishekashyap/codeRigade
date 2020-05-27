@@ -1,19 +1,20 @@
 const users = [];
 
-const addUser = ({ id, username, roomcode }) => {
-  username = username.trim();
+const addUser = ({ id, name, roomcode }) => {
+  name = name.trim();
 
-  let userExists = users.find(
-    (user) =>
-      user.username.toLowercase() === username.toLowercase() &&
-      user.roomcode === roomcode
-  );
+  // let userExists = users.find(
+  //   (user) =>
+  //     user.name.toLowercase() === name.toLowercase() && user.roomcode === roomcode
+  // );
+
+  let userExists = false;
 
   if (userExists) {
-    return { error: "Username already exists" };
+    return { error: "name already exists" };
   } else {
     // Add new user
-    const user = { id, username, roomcode };
+    const user = { id, name, roomcode };
     users.push(user);
     return { user };
   }
