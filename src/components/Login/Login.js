@@ -10,7 +10,7 @@ export default function Login() {
       <form>
         <input type="text" placeholder="Username" required />
         <input type="text" placeholder="CodeBox key" required />
-        <input type="submit" />
+        <input type="submit" value="Get started" />
       </form>
     </div>
   );

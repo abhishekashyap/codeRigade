@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { FiShare2 } from "react-icons/fi";
+import io from "socket.io-client";
 
 // The following two imports is for the theme.
 import "codemirror/lib/codemirror.css";
@@ -24,6 +25,8 @@ import "codemirror/mode/vue/vue";
 
 // Overrides some codemirror classes, don't change order
 import "./Codebox.scss";
+
+const socket = io('localhost:5000');
 
 export default function Codebox() {
   const [options, setOptions] = useState({
