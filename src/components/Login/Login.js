@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.scss";
 
-export default function Login() {
+export default function Login(props) {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const code = new Date().getTime(); // Generating random key
+    props.history.push(`/codebox?name=${name}&code=${code}`);
+    console.log(name);
+  };
+
   return (
     <div className="login-container">
       <header>
         <h1>CodeRigade</h1>
       </header>
-      <form>
-        <input type="text" placeholder="Username" required />
-        <input type="text" placeholder="CodeBox key" required />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <input type="submit" value="Get started" />
       </form>
     </div>

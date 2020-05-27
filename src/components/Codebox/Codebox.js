@@ -26,7 +26,7 @@ import "codemirror/mode/vue/vue";
 // Overrides some codemirror classes, don't change order
 import "./Codebox.scss";
 
-const socket = io('localhost:5000');
+const socket = io("localhost:5000");
 
 export default function Codebox() {
   const [options, setOptions] = useState({
