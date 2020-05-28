@@ -43,21 +43,30 @@ export default function Codebox({ location }) {
   const ENDPOINT = "localhost:5000";
 
   useEffect(() => {
-    const { name, code } = queryString.parse(location.search);
+    const { code } = queryString.parse(location.search);
 
     socket = io(ENDPOINT);
+
+    let name;
+    while (!name) {
+      // While name is undefined
+      name = prompt("Hi, What is your name?");
+    }
 
     setName(name);
     setCode(code);
 
+    // Initial connection to the room
     socket.emit("join", { name, code }, (error) => {
       if (error) {
-        let newName = prompt("Please enter your name:")
+        alert(error);
       }
     });
   }, [ENDPOINT, location.search]);
 
+  // Socket.io listeners
   useEffect(() => {
+    console.log("triggered");
     socket.on("text", (text) => {
       setText(text);
     });
@@ -96,13 +105,15 @@ export default function Codebox({ location }) {
         <h1>CodeRigade</h1>
       </header>
       <main>
+        <div>
+          <h3>Users</h3>
+          <ul>
+            {users && users.map((user) => <li key={user.id}>{user.name}</li>)}
+          </ul>
+        </div>
         <div className="controls">
           <div className="control-dropdown">
-            <select
-              defaultValue="xml"
-              value={options.mode}
-              onChange={handleMode}
-            >
+            <select value={options.mode} onChange={handleMode}>
               <option value="xml">XML/HTML</option>
               <option value="css">CSS</option>
               <option value="javascript">Javascript</option>
@@ -117,11 +128,7 @@ export default function Codebox({ location }) {
             <FiShare2 size={15} />
           </div>
           <div className="control-dropdown">
-            <select
-              defaultValue="material"
-              value={options.theme}
-              onChange={handleTheme}
-            >
+            <select value={options.theme} onChange={handleTheme}>
               <option value="material">Material</option>
               <option value="monokai">Monokai</option>
               <option value="nord">Nord</option>

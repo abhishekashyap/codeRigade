@@ -1,21 +1,14 @@
 const users = [];
 
 const addUser = ({ id, name, roomcode }) => {
-  name = name.trim();
-
-  let userExists = users.find(
-    (user) =>
-      user.name.toLowerCase() === name.toLowerCase() &&
-      user.roomcode === roomcode
-  );
-
-  if (userExists) {
-    return { error: "name already exists" };
-  } else {
-    // Add new user
+  if (name) {
+    // If name is defined, add the user
+    name = name.trim();
     const user = { id, name, roomcode };
     users.push(user);
     return { user };
+  } else {
+    return { error: "Enter a valid name" };
   }
 };
 
