@@ -38,6 +38,7 @@ export default function Codebox({ location }) {
 
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
+  const [users, setUsers] = useState("");
   const [text, setText] = useState("<h1>Welcome to CodeRigade</h1>");
   const ENDPOINT = "localhost:5000";
 
@@ -51,13 +52,42 @@ export default function Codebox({ location }) {
 
     socket.emit("join", { name, code }, (error) => {
       if (error) {
-        alert(error);
+        let newName = prompt("Please enter your name:")
       }
     });
   }, [ENDPOINT, location.search]);
 
+  useEffect(() => {
+    socket.on("text", (text) => {
+      setText(text);
+    });
+
+    socket.on("changeMode", (mode) => {
+      setOptions({ mode: mode });
+    });
+
+    socket.on("changeTheme", (theme) => {
+      setOptions({ theme: theme });
+    });
+
+    socket.on("roomData", ({ users }) => {
+      setUsers(users);
+      console.log(users);
+    });
+  }, []);
+
   const handleChange = () => {
     socket.emit("sendText", text);
+  };
+
+  const handleMode = (e) => {
+    setOptions({ mode: e.target.value });
+    socket.emit("sendModeValue", e.target.value);
+  };
+
+  const handleTheme = (e) => {
+    setOptions({ theme: e.target.value });
+    socket.emit("sendThemeValue", e.target.value);
   };
 
   return (
@@ -69,10 +99,9 @@ export default function Codebox({ location }) {
         <div className="controls">
           <div className="control-dropdown">
             <select
-              defaultValue={options.mode}
-              onChange={(e) => {
-                setOptions({ mode: e.target.value });
-              }}
+              defaultValue="xml"
+              value={options.mode}
+              onChange={handleMode}
             >
               <option value="xml">XML/HTML</option>
               <option value="css">CSS</option>
@@ -89,10 +118,9 @@ export default function Codebox({ location }) {
           </div>
           <div className="control-dropdown">
             <select
-              defaultValue={options.theme}
-              onChange={(e) => {
-                setOptions({ theme: e.target.value });
-              }}
+              defaultValue="material"
+              value={options.theme}
+              onChange={handleTheme}
             >
               <option value="material">Material</option>
               <option value="monokai">Monokai</option>

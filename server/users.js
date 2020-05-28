@@ -3,12 +3,11 @@ const users = [];
 const addUser = ({ id, name, roomcode }) => {
   name = name.trim();
 
-  // let userExists = users.find(
-  //   (user) =>
-  //     user.name.toLowercase() === name.toLowercase() && user.roomcode === roomcode
-  // );
-
-  let userExists = false;
+  let userExists = users.find(
+    (user) =>
+      user.name.toLowerCase() === name.toLowerCase() &&
+      user.roomcode === roomcode
+  );
 
   if (userExists) {
     return { error: "name already exists" };

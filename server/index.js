@@ -20,15 +20,16 @@ io.on("connection", (socket) => {
     if (error) {
       return callback(error);
     } else {
-      socket.broadcast.to(user.code).emit("text", {
-        user: "admin",
-        text: `${user.name} has joined!`,
-      });
+      // socket.broadcast.to(user.code).emit("text", {
+      //   user: "admin",
+      //   text: `${user.name} has joined!`,
+      // });
 
       socket.join(user.code);
+      console.log("user id", socket.id);
 
       io.to(user.code).emit("roomData", {
-        room: user.code,
+        code: user.code,
         users: usersInRoom(user.code),
       });
 
@@ -39,7 +40,27 @@ io.on("connection", (socket) => {
   socket.on("sendText", (text) => {
     const user = findUser(socket.id);
     console.log(text);
-    io.to(user.room).emit("text", { user: user.name, text: text });
+    // socket.emit("text", text);
+    socket.broadcast.emit("text", text);
+    // io.sockets.emit()
+    // io.emit("text", text);
+  });
+
+  socket.on("sendModeValue", (mode) => {
+    const user = findUser(socket.id);
+    // socket.emit("text", text);
+    io.to(user.code).emit("changeMode", mode);
+    // io.sockets.emit()
+    // io.emit("text", text);
+  });
+
+  socket.on("sendThemeValue", (theme) => {
+    const user = findUser(socket.id);
+    // socket.emit("text", text);
+    console.log("user code",user.code);
+    io.to(user.code).emit("changeTheme", theme);
+    // io.sockets.emit()
+    // io.emit("text", text);
   });
 
   socket.on("disconnect", () => {
