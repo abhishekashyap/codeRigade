@@ -4,8 +4,8 @@ import "./Login.scss";
 export default function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const code = new Date().getTime(); // Generating random key
-    props.history.push(`/codebox?code=${code}`);
+    const room = new Date().getTime(); // Generating random room code
+    props.history.push(`/codebox?room=${room}`);
   };
 
   return (

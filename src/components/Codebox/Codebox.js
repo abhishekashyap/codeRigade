@@ -37,13 +37,13 @@ export default function Codebox({ location }) {
   });
 
   const [name, setName] = useState("");
-  const [code, setCode] = useState("");
+  const [room, setRoom] = useState("");
   const [users, setUsers] = useState("");
   const [text, setText] = useState("<h1>Welcome to CodeRigade</h1>");
   const ENDPOINT = "localhost:5000";
 
   useEffect(() => {
-    const { code } = queryString.parse(location.search);
+    const { room } = queryString.parse(location.search);
 
     socket = io(ENDPOINT);
 
@@ -54,10 +54,10 @@ export default function Codebox({ location }) {
     }
 
     setName(name);
-    setCode(code);
+    setRoom(room);
 
     // Initial connection to the room
-    socket.emit("join", { name, code }, (error) => {
+    socket.emit("join", { name, room }, (error) => {
       if (error) {
         alert(error);
       }
@@ -67,6 +67,7 @@ export default function Codebox({ location }) {
   // Socket.io listeners
   useEffect(() => {
     console.log("triggered");
+
     socket.on("text", (text) => {
       setText(text);
     });

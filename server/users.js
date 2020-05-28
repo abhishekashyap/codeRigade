@@ -1,10 +1,10 @@
 const users = [];
 
-const addUser = ({ id, name, roomcode }) => {
+const addUser = ({ id, name, room }) => {
   if (name) {
     // If name is defined, add the user
     name = name.trim();
-    const user = { id, name, roomcode };
+    const user = { id, name, room };
     users.push(user);
     return { user };
   } else {
