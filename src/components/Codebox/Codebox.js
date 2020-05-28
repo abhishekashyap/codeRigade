@@ -66,8 +66,6 @@ export default function Codebox({ location }) {
 
   // Socket.io listeners
   useEffect(() => {
-    console.log("triggered");
-
     socket.on("text", (text) => {
       setText(text);
     });
@@ -87,8 +85,7 @@ export default function Codebox({ location }) {
   }, []);
 
   const handleChange = (value) => {
-    setText(value);
-    socket.emit("sendText", text);
+    socket.emit("sendText", value);
   };
 
   const handleMode = (e) => {
@@ -143,11 +140,8 @@ export default function Codebox({ location }) {
           value={text}
           className="code-editor"
           options={options}
-          // onChange={(e) => {
-          //   setText(e.target.value);
-          //   handleChange();
-          // }}
           onBeforeChange={(editor, data, value) => {
+            setText(value);
             handleChange(value);
           }}
         />
