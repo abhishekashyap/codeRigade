@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { UnControlled as CodeMirror } from "react-codemirror2";
+import { Controlled as CodeMirror } from "react-codemirror2";
 import { FiShare2 } from "react-icons/fi";
 import io from "socket.io-client";
 import queryString from "query-string";
@@ -86,7 +86,8 @@ export default function Codebox({ location }) {
     });
   }, []);
 
-  const handleChange = () => {
+  const handleChange = (value) => {
+    setText(value);
     socket.emit("sendText", text);
   };
 
@@ -142,10 +143,12 @@ export default function Codebox({ location }) {
           value={text}
           className="code-editor"
           options={options}
-          autoCursor={false}
-          onChange={(editor, data, value) => {
-            setText(value);
-            handleChange();
+          // onChange={(e) => {
+          //   setText(e.target.value);
+          //   handleChange();
+          // }}
+          onBeforeChange={(editor, data, value) => {
+            handleChange(value);
           }}
         />
       </main>
