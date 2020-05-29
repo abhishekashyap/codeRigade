@@ -36,7 +36,6 @@ export default function Codebox({ location }) {
     theme: "material",
     lineNumbers: true,
   });
-
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [users, setUsers] = useState("");
@@ -129,33 +128,38 @@ export default function Codebox({ location }) {
     socket.emit("sendThemeValue", e.target.value);
   };
 
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    store.addNotification({
+      message: "Copied shareable link to clipboard!",
+      type: "info",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    });
+  };
+
   return (
     <div className="codebox-container">
       <header>
         <h1>CodeRigade</h1>
+        <h5>Real-time collaborative code editor</h5>
       </header>
+      <div className="users">
+        {users &&
+          users.map((user) => (
+            <div className="user" key={user.id}>
+              <span></span>&nbsp;&nbsp;
+              {user.name}
+            </div>
+          ))}
+      </div>
       <main>
-        <div className="users">
-          <div className="user">
-            <span class="online-dot"></span>&nbsp;&nbsp;Random Name
-          </div>
-          <div className="user">
-            <span class="online-dot"></span>&nbsp;&nbsp;John Doe
-          </div>
-          <div className="user">
-            <span class="online-dot"></span>&nbsp;&nbsp;Abhishek
-          </div>
-          <div className="user">
-            <span class="online-dot"></span>&nbsp;&nbsp;New name
-          </div>
-          {/* {users &&
-            users.map((user) => (
-              <div className="user" key={user.id}>
-              <span></span>
-                {user.name}
-              </div>
-            ))} */}
-        </div>
         <div className="controls">
           <div className="control-dropdown">
             <select value={options.mode} onChange={handleMode}>
@@ -168,7 +172,7 @@ export default function Codebox({ location }) {
               <option value="vue">Vue</option>
             </select>
           </div>
-          <div className="control-icon">
+          <div onClick={handleShare} className="control-icon">
             <span>Share&nbsp;&nbsp;</span>
             <FiShare2 size={15} />
           </div>
