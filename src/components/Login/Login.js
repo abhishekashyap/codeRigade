@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Login.scss";
+import Header from "../Header/Header";
 
 export default function Login(props) {
   const handleSubmit = (e) => {
@@ -10,13 +11,23 @@ export default function Login(props) {
 
   return (
     <div className="login-container">
-      <header>
-        <h1>CodeRigade</h1>
-      </header>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" required />
-        <input type="submit" value="Get started" />
-      </form>
+      <Header />
+      <main>
+        <div className="animation">
+          <lottie-player
+            src="https://assets8.lottiefiles.com/private_files/lf30_vAtD7F.json"
+            background="transparent"
+            speed="2"
+            loop
+            autoplay
+          ></lottie-player>
+        </div>
+        <div className="btn-container">
+          <form onSubmit={handleSubmit}>
+            <input type="submit" value="Get started" />
+          </form>
+        </div>
+      </main>
     </div>
   );
 }

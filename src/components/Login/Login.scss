@@ -2,47 +2,48 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
   align-items: center;
 
-  header {
-    margin-top: 3rem;
-    h1 {
-      text-align: center;
-      font-size: 3em;
-      color: #f0f0f0;
+  
+
+  main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .animation {
+    width: 30%;
+    @media screen and (max-width: 800px) {
+      width: 70%;
+    }
+  }
+
+  .btn-container {
+    margin: auto;
+    width: 20%;
+    @media screen and (max-width: 800px) {
+      width: 70%;
     }
   }
 
   form {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    max-width: 20rem;
+    width: 100%;
+
     input {
       flex: 1;
       border: none;
+      border-radius: 5px;
       padding: 5%;
-      height: 50px;
-      font-size: 1em;
+      font-size: 1.4em;
       color: #f0f0f0;
       outline-color: #fc5185;
-      transition: 0.2s ease;
-    }
-
-    input[type="text"] {
-      background-color: #464a4b;
-      transition: 0.2s ease;
-      margin-top: 3%;
-      &:focus {
-        background-color: #54595a;
-      }
-    }
-
-    input[type="submit"] {
       background-color: #fc5185;
       transition: 0.2s ease;
-      margin-top: 10%;
+      // margin-top: 10%;
       &:hover {
         background-color: #ff4079;
         cursor: pointer;

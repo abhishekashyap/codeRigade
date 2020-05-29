@@ -27,6 +27,7 @@ import "codemirror/mode/vue/vue";
 
 // Overrides some codemirror classes, don't change order
 import "./Codebox.scss";
+import Header from "../Header/Header";
 
 let socket;
 
@@ -146,10 +147,7 @@ export default function Codebox({ location }) {
 
   return (
     <div className="codebox-container">
-      <header>
-        <h1>CodeRigade</h1>
-        <h5>Real-time collaborative code editor</h5>
-      </header>
+      <Header />
       <div className="users">
         {users &&
           users.map((user) => (
