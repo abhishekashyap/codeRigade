@@ -1,0 +1,21 @@
+.control-dropdown {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  background-color: #13866f;
+  padding: 0 1% 0 1%;
+  select {
+    width: 100%;
+    outline-color: #fc5185;
+    appearance: none;
+    background-color: #13866f;
+    color: #fff;
+    font-size: inherit;
+    padding: 0.5em;
+    border: none;
+    transition: 0.2s ease;
+    &:hover {
+      background-color: #145f50;
+    }
+  }
+}

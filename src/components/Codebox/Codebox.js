@@ -31,11 +31,12 @@ import "codemirror/mode/vue/vue";
 
 // Overrides some codemirror classes, don't change order
 import "./Codebox.scss";
+import ControlDropdown from "../ControlDropdown/ControlDropdown";
 
 let socket;
 
 export default function Codebox({ location }) {
-  const [options, setOptions] = useState({
+  const [config, setConfig] = useState({
     mode: { name: "xml" },
     theme: "material",
     lineNumbers: true,
@@ -105,11 +106,11 @@ export default function Codebox({ location }) {
     });
 
     socket.on("changeMode", (mode) => {
-      setOptions({ mode: mode });
+      setConfig({ mode: mode });
     });
 
     socket.on("changeTheme", (theme) => {
-      setOptions({ theme: theme });
+      setConfig({ theme: theme });
     });
 
     socket.on("roomData", ({ users }) => {
@@ -123,12 +124,12 @@ export default function Codebox({ location }) {
   };
 
   const handleMode = (e) => {
-    setOptions({ mode: e.target.value });
+    setConfig({ mode: e.target.value });
     socket.emit("sendModeValue", e.target.value);
   };
 
   const handleTheme = (e) => {
-    setOptions({ theme: e.target.value });
+    setConfig({ theme: e.target.value });
     socket.emit("sendThemeValue", e.target.value);
   };
 
@@ -148,41 +149,49 @@ export default function Codebox({ location }) {
     });
   };
 
+  const modes = [
+    { name: "XML/HTML", code: "xml" },
+    { name: "CSS", code: "css" },
+    { name: "Javascript", code: "javascript" },
+    { name: "C/C++/C#", code: "clike" },
+    { name: "Python", code: "python" },
+    { name: "PHP", code: "php" },
+    { name: "Vue", code: "vue" },
+  ];
+
+  const themes = [
+    { name: "Material", code: "material" },
+    { name: "Monokai", code: "monokai" },
+    { name: "Nord", code: "nord" },
+    { name: "Ambiance", code: "ambiance" },
+    { name: "Eclipse", code: "eclipse" },
+  ];
+
   return (
     <div className="codebox-container">
       <Header />
       <UsersList users={users} />
       <main>
         <div className="controls">
-          <div className="control-dropdown">
-            <select value={options.mode} onChange={handleMode}>
-              <option value="xml">XML/HTML</option>
-              <option value="css">CSS</option>
-              <option value="javascript">Javascript</option>
-              <option value="clike">C/C++/C#</option>
-              <option value="python">Python</option>
-              <option value="php">PHP</option>
-              <option value="vue">Vue</option>
-            </select>
-          </div>
+          <ControlDropdown
+            default={config.mode}
+            options={modes}
+            handleDropdown={handleMode}
+          />
           <div onClick={handleShare} className="control-icon">
             <span>Share&nbsp;&nbsp;</span>
             <FiShare2 size={15} />
           </div>
-          <div className="control-dropdown">
-            <select value={options.theme} onChange={handleTheme}>
-              <option value="material">Material</option>
-              <option value="monokai">Monokai</option>
-              <option value="nord">Nord</option>
-              <option value="ambiance">Ambiance</option>
-              <option value="eclipse">Eclipse</option>
-            </select>
-          </div>
+          <ControlDropdown
+            default={config.mode}
+            options={themes}
+            handleDropdown={handleTheme}
+          />
         </div>
         <CodeMirror
           value={text}
           className="code-editor"
-          options={options}
+          options={config}
           onBeforeChange={(editor, data, value) => {
             setText(value);
             handleChange(value);
