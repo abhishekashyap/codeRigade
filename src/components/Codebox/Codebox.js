@@ -7,7 +7,7 @@ import { store } from "react-notifications-component";
 
 // Components
 import Header from "../Header/Header";
-import Users from "../Users/Users";
+import UsersList from "../UsersList/UsersList";
 
 // The following imports is for the theme.
 import "codemirror/lib/codemirror.css";
@@ -151,7 +151,7 @@ export default function Codebox({ location }) {
   return (
     <div className="codebox-container">
       <Header />
-      <Users usersList={users} />
+      <UsersList users={users} />
       <main>
         <div className="controls">
           <div className="control-dropdown">
