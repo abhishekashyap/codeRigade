@@ -135,9 +135,27 @@ export default function Codebox({ location }) {
         <h1>CodeRigade</h1>
       </header>
       <main>
-        {/* <div className="users">
-          {users && users.map((user) => <div className="user" key={user.id}>{user.name}</div>)}
-        </div> */}
+        <div className="users">
+          <div className="user">
+            <span class="online-dot"></span>&nbsp;&nbsp;Random Name
+          </div>
+          <div className="user">
+            <span class="online-dot"></span>&nbsp;&nbsp;John Doe
+          </div>
+          <div className="user">
+            <span class="online-dot"></span>&nbsp;&nbsp;Abhishek
+          </div>
+          <div className="user">
+            <span class="online-dot"></span>&nbsp;&nbsp;New name
+          </div>
+          {/* {users &&
+            users.map((user) => (
+              <div className="user" key={user.id}>
+              <span></span>
+                {user.name}
+              </div>
+            ))} */}
+        </div>
         <div className="controls">
           <div className="control-dropdown">
             <select value={options.mode} onChange={handleMode}>
@@ -151,7 +169,7 @@ export default function Codebox({ location }) {
             </select>
           </div>
           <div className="control-icon">
-            <span>Share&nbsp;</span>
+            <span>Share&nbsp;&nbsp;</span>
             <FiShare2 size={15} />
           </div>
           <div className="control-dropdown">
