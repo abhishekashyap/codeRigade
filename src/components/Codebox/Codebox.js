@@ -3,8 +3,9 @@ import { Controlled as CodeMirror } from "react-codemirror2";
 import { FiShare2 } from "react-icons/fi";
 import io from "socket.io-client";
 import queryString from "query-string";
+import { store } from "react-notifications-component";
 
-// The following two imports is for the theme.
+// The following imports is for the theme.
 import "codemirror/lib/codemirror.css";
 
 // Themes
@@ -70,6 +71,36 @@ export default function Codebox({ location }) {
       setText(text);
     });
 
+    socket.on("notification", (notification) => {
+      if (notification.type === "connect") {
+        store.addNotification({
+          message: notification.text,
+          type: "success",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true,
+          },
+        });
+      } else {
+        store.addNotification({
+          message: notification.text,
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000,
+            onScreen: true,
+          },
+        });
+      }
+    });
+
     socket.on("changeMode", (mode) => {
       setOptions({ mode: mode });
     });
@@ -104,12 +135,9 @@ export default function Codebox({ location }) {
         <h1>CodeRigade</h1>
       </header>
       <main>
-        <div>
-          <h3>Users</h3>
-          <ul>
-            {users && users.map((user) => <li key={user.id}>{user.name}</li>)}
-          </ul>
-        </div>
+        {/* <div className="users">
+          {users && users.map((user) => <div className="user" key={user.id}>{user.name}</div>)}
+        </div> */}
         <div className="controls">
           <div className="control-dropdown">
             <select value={options.mode} onChange={handleMode}>

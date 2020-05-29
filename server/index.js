@@ -20,15 +20,14 @@ io.on("connection", (socket) => {
     if (error) {
       return callback(error);
     } else {
-      // For notifications 
-
-      // socket.broadcast.to(user.room).emit("text", {
-      //   user: "admin",
-      //   text: `${user.name} has joined!`,
-      // });
-
       socket.join(user.room);
       console.log("user id", socket.id);
+
+      // For notifications
+      socket.broadcast.to(user.room).emit("notification", {
+        text: `${user.name} has joined!`,
+        type: "connect",
+      });
 
       io.to(user.room).emit("roomData", {
         room: user.room,
@@ -60,9 +59,14 @@ io.on("connection", (socket) => {
     console.log("User has disconnected");
     const user = removeUser(socket.id);
     if (user) {
-      io.to(user.room).emit("text", {
-        user: "admin",
+      io.to(user.room).emit("notification", {
         text: `${user.name} has left`,
+        type: "disconnect",
+      });
+
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: usersInRoom(user.room),
       });
     }
   });
