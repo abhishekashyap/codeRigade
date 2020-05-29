@@ -5,33 +5,11 @@
   flex-direction: column;
   height: 100%;
 
-  header {
-    margin-top: 3rem;
-    h1 {
-      text-align: center;
-      font-size: 3.2em;
-      color: #f0f0f0;
-      @media screen and (max-width: 800px) {
-        font-size: 2.4em;
-      }
-    }
-    h5 {
-      text-align: center;
-      font-size: 1.5em;
-      color: #fc5185;
-      @media screen and (max-width: 800px) {
-        font-size: 1.3em;
-        margin-bottom: 5%;
-      }
-    }
-  }
-
   main {
     display: flex;
     height: 90%;
     flex-direction: column;
     margin-top: 1%;
-    // justify-content: center;
     align-items: center;
   }
 

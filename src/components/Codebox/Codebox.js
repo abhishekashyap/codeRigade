@@ -36,15 +36,16 @@ import ControlDropdown from "../ControlDropdown/ControlDropdown";
 let socket;
 
 export default function Codebox({ location }) {
+  const [name, setName] = useState("");
+  const [room, setRoom] = useState("");
+  const [users, setUsers] = useState("");
+  const [text, setText] = useState("<h1>Welcome to CodeRigade</h1>");
   const [config, setConfig] = useState({
     mode: { name: "xml" },
     theme: "material",
     lineNumbers: true,
   });
-  const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
-  const [users, setUsers] = useState("");
-  const [text, setText] = useState("<h1>Welcome to CodeRigade</h1>");
+
   const ENDPOINT = "localhost:5000";
 
   useEffect(() => {
