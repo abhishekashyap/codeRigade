@@ -5,6 +5,10 @@ import io from "socket.io-client";
 import queryString from "query-string";
 import { store } from "react-notifications-component";
 
+// Components
+import Header from "../Header/Header";
+import Users from "../Users/Users";
+
 // The following imports is for the theme.
 import "codemirror/lib/codemirror.css";
 
@@ -27,7 +31,6 @@ import "codemirror/mode/vue/vue";
 
 // Overrides some codemirror classes, don't change order
 import "./Codebox.scss";
-import Header from "../Header/Header";
 
 let socket;
 
@@ -148,15 +151,7 @@ export default function Codebox({ location }) {
   return (
     <div className="codebox-container">
       <Header />
-      <div className="users">
-        {users &&
-          users.map((user) => (
-            <div className="user" key={user.id}>
-              <span></span>&nbsp;&nbsp;
-              {user.name}
-            </div>
-          ))}
-      </div>
+      <Users usersList={users} />
       <main>
         <div className="controls">
           <div className="control-dropdown">
