@@ -88,6 +88,7 @@ export default function Codebox({ location }) {
           dismiss: {
             duration: 5000,
             onScreen: true,
+            pauseOnHover: true
           },
         });
       } else {
@@ -101,6 +102,7 @@ export default function Codebox({ location }) {
           dismiss: {
             duration: 5000,
             onScreen: true,
+            pauseOnHover: true
           },
         });
       }
@@ -146,6 +148,7 @@ export default function Codebox({ location }) {
       dismiss: {
         duration: 5000,
         onScreen: true,
+        pauseOnHover: true
       },
     });
   };
