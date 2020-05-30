@@ -47,3 +47,13 @@
     font-size: 1.3em;
   }
 }
+
+a:link, a:visited {
+  color: #D63031;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+a:link:active, a:visited:active {
+  color: rgb(10, 223, 46);
+}

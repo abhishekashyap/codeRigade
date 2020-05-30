@@ -4,6 +4,7 @@ import { FiShare2 } from "react-icons/fi";
 import io from "socket.io-client";
 import queryString from "query-string";
 import { store } from "react-notifications-component";
+import StickyFooter from 'react-sticky-footer';
 
 // Components
 import Header from "../Header/Header";
@@ -211,6 +212,23 @@ export default function Codebox({ location }) {
           }}
         />
       </main>
+      
+      <StickyFooter
+    bottomThreshold={50}
+    normalStyles={{
+    backgroundColor: "#0A3D62",
+    padding: "2rem"
+    }}
+    stickyStyles={{
+    backgroundColor: "rgba(255,255,255,.8)",
+    padding: "2rem"
+    }}
+>
+    <h3 align="center">
+      Open-Sourced on <a href="https://github.com/abhishekashyap/codeRigade" rel="noopener noreferrer" target="_blank">GitHub</a> | Made with <i class="icon ion-heart"></i>
+    </h3>
+</StickyFooter>
+
     </div>
   );
 }
