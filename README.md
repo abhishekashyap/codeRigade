@@ -1,4 +1,5 @@
-# CodeRigade
+![CodeRigade](design/feature-graphic.png "CodeRigade")
+<!-- # CodeRigade -->
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e023e0c8-0e17-430a-a6b3-75e81948517c/deploy-status)](https://app.netlify.com/sites/coderigade/deploys)
 
@@ -22,10 +23,12 @@ cd server       #Change directory to server
 npm install     #Installing dependencies
 npm run dev     #Starting dev server
 ```
-<!-- 
+
 ## Screenshots
 
-![Homepage](screenshots/homepage.png "Landing page") -->
+![Home](screenshots/home.png "home")
+![Codebox](screenshots/home.png "codebox")
+![Notifications](screenshots/home.png "notifications")
 
 ## Built With
 
