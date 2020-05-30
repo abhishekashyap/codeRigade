@@ -88,7 +88,10 @@ export default function Codebox({ location }) {
           dismiss: {
             duration: 5000,
             onScreen: true,
-            pauseOnHover: true
+            pauseOnHover: true,
+            touch: true,
+            showIcon: true,
+            click: true,
           },
         });
       } else {
@@ -102,7 +105,10 @@ export default function Codebox({ location }) {
           dismiss: {
             duration: 5000,
             onScreen: true,
-            pauseOnHover: true
+            pauseOnHover: true,
+            touch: true,
+            showIcon: true,
+            click: true,
           },
         });
       }
@@ -148,7 +154,10 @@ export default function Codebox({ location }) {
       dismiss: {
         duration: 5000,
         onScreen: true,
-        pauseOnHover: true
+        pauseOnHover: true,
+        touch: true,
+        showIcon: true,
+        click: true,
       },
     });
   };
