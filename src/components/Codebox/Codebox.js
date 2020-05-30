@@ -46,7 +46,7 @@ export default function Codebox({ location }) {
     lineNumbers: true,
   });
 
-  const ENDPOINT = "https://coderigade.herokuapp.com/";
+  const ENDPOINT = "localhost:5000";
 
   useEffect(() => {
     const { room } = queryString.parse(location.search);
