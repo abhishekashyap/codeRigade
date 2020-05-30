@@ -11,16 +11,16 @@ CodeRigade is a realtime collaborative code editor.
 ### Setting up frontend
 
 ```bash
-npm install # Installing dependencies
-npm start   # Starting dev server
+npm install #Installing dependencies
+npm start   #Starting dev server
 ```
 
 ### Setting up backend
 
 ```bash
-cd server # Change directory to server
-npm install # Installing dependencies
-npm run dev # Starting dev server
+cd server   #Change directory to server
+npm install #Installing dependencies
+npm run dev #Starting dev server
 ```
 <!-- 
 ## Screenshots

@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 
 const { addUser, removeUser, findUser, usersInRoom } = require("./users");
 
-app.use(cors);
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to CodeRigade server</h1>");
