@@ -24,9 +24,11 @@ npm run dev     #Starting dev server
 
 ## Screenshots
 
-![Home](screenshots/home.png "home")
-![Codebox](screenshots/codebox.png "codebox")
-![Notifications](screenshots/notifications.png "notifications")
+<p align="center">
+  <img src="screenshots/home.png" alt="CodeRigade's homepage"/>
+  <img src="screenshots/codebox.png" alt="CodeRigade's codebox"/>
+  <img src="screenshots/notifications.png" alt="CodeRigade's codebox with notifications"/>
+</p>
 
 ## Built With
 
