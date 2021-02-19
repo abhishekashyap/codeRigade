@@ -45,6 +45,8 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.7",
+    "@types/styled-components": "^5.1.7",
     "eslint": "^7.20.0",
     "eslint-config-airbnb-typescript-prettier": "^4.1.0",
     "prettier": "^2.2.1"
