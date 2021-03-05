@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FiArrowRight } from 'react-icons/fi';
 
 const Container = styled.div`
   position: relative;
@@ -31,7 +32,7 @@ const Title = styled.h1`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 70%;
   color: #1f2937;
   outline: none;
   border: none;
@@ -47,7 +48,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   cursor: pointer;
-  width: 100%;
+  display: flex;
   border: none;
   border-radius: 5px;
   margin: 0.5rem;
@@ -65,14 +66,23 @@ const Button = styled.button`
   }
 `;
 
+const ActionContainer = styled.div`
+  display: flex;
+`;
+
 export default function Home(): JSX.Element {
   return (
     <Container>
       <LeftSectionSkewContainer>
         <LeftSectionMainContainer>
           <Title>Realtime collaborative code editor</Title>
-          <Input type="text" placeholder="John Doe" />
-          <Button>Get started</Button>
+          <ActionContainer>
+            <Input type="text" placeholder="John Doe" />
+            <Button>
+              Get started&nbsp;&nbsp;
+              <FiArrowRight />
+            </Button>
+          </ActionContainer>
         </LeftSectionMainContainer>
       </LeftSectionSkewContainer>
     </Container>
