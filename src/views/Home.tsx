@@ -70,6 +70,18 @@ const ActionContainer = styled.div`
   display: flex;
 `;
 
+const FooterContainer = styled.div`
+  display: flex;
+`;
+
+const Avatar = styled.img`
+  height: 3rem;
+  width: 3rem;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 2px solid white;
+`;
+
 export default function Home(): JSX.Element {
   return (
     <Container>
@@ -83,6 +95,14 @@ export default function Home(): JSX.Element {
               <FiArrowRight />
             </Button>
           </ActionContainer>
+          <FooterContainer>
+            <FooterContainer>
+              <Avatar
+                src="https://avatars.githubusercontent.com/u/29458374?s=460&u=1ba41b270e9369be20bfa7424ad353ec7ca984bd&v=4"
+                alt="Abhishek Kashyap"
+              />
+            </FooterContainer>
+          </FooterContainer>
         </LeftSectionMainContainer>
       </LeftSectionSkewContainer>
     </Container>
