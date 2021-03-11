@@ -23,12 +23,18 @@ const LeftSectionMainContainer = styled.section`
   transform: skewX(8deg);
   margin: 5rem;
   padding: 5rem;
-  /* background-color: #95a5a6; */
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 2.25rem;
   color: white;
+`;
+
+const FooterTitle = styled.h5`
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  color: white;
+  text-transform: uppercase;
 `;
 
 const Input = styled.input`
@@ -72,6 +78,14 @@ const ActionContainer = styled.div`
 
 const FooterContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+`;
+
+const FooterContent = styled.a`
+  display: flex;
+  margin-top: 1.25rem;
+  text-decoration: none;
 `;
 
 const Avatar = styled.img`
@@ -80,6 +94,24 @@ const Avatar = styled.img`
   overflow: hidden;
   border-radius: 999px;
   border: 2px solid white;
+`;
+
+const AvatarContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  margin-left: 0.75rem;
+`;
+
+const AvatarTitle = styled.p`
+  font-weight: bolder;
+  letter-spacing: 0.05rem;
+`;
+
+const AvatarSubtitle = styled.p`
+  font-size: 0.5rem;
+  letter-spacing: 0.05rem;
 `;
 
 export default function Home(): JSX.Element {
@@ -96,12 +128,22 @@ export default function Home(): JSX.Element {
             </Button>
           </ActionContainer>
           <FooterContainer>
-            <FooterContainer>
+            <FooterTitle>Developed by</FooterTitle>
+            <FooterContent
+              href="https://github.com/abhishekashyap"
+              target="_blank"
+            >
               <Avatar
                 src="https://avatars.githubusercontent.com/u/29458374?s=460&u=1ba41b270e9369be20bfa7424ad353ec7ca984bd&v=4"
                 alt="Abhishek Kashyap"
               />
-            </FooterContainer>
+              <AvatarContent>
+                <AvatarTitle>Abhishek Kashyap</AvatarTitle>
+                <AvatarSubtitle>
+                  Designer by the day, Coder by the night
+                </AvatarSubtitle>
+              </AvatarContent>
+            </FooterContent>
           </FooterContainer>
         </LeftSectionMainContainer>
       </LeftSectionSkewContainer>
