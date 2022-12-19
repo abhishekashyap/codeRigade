@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "codemirror": "^5.58.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-codemirror2": "^7.2.0",
